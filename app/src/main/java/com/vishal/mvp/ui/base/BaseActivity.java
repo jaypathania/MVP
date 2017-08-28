@@ -14,12 +14,15 @@ import android.widget.TextView;
 import com.vishal.mvp.utils.CommonUtils;
 import com.vishal.mvp.utils.NetworkUtils;
 
+import butterknife.Unbinder;
+
 /**
  * Created by Administrator on 8/24/2017.
  */
 
-public class BaseActivity extends AppCompatActivity implements MvpView {
+public class BaseActivity extends AppCompatActivity implements MvpView, BaseFragment.Callback {
     private ProgressDialog mProgressDialog;
+    private Unbinder mUnBinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
@@ -57,6 +60,7 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
 
     @Override
     public void showMessage(String message) {
+        showSnackBar(message);
     }
 
     @Override
@@ -79,5 +83,29 @@ public class BaseActivity extends AppCompatActivity implements MvpView {
         TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
         snackbar.show();
+    }
+
+    @Override
+    public void onFragmentAttached() {
+
+    }
+
+    @Override
+    public void onFragmentDetached(String tag) {
+
+    }
+
+
+    public void setmUnBinder(Unbinder mUnBinder) {
+        this.mUnBinder = mUnBinder;
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mUnBinder != null) {
+            mUnBinder.unbind();
+        }
     }
 }

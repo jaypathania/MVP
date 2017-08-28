@@ -24,13 +24,11 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     public void openLoginActivity() {
         Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override
     public void openHomeActivity() {
         Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
         startActivity(intent);
-        finish();
     }
 }

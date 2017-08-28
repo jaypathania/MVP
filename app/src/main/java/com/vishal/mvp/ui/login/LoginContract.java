@@ -8,7 +8,7 @@ import com.vishal.mvp.ui.base.MvpView;
 
 public interface LoginContract {
     interface View extends MvpView {
-
+        void openHomeActivity();
     }
 
     interface UserActionsListener {

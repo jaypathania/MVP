@@ -12,6 +12,7 @@ import com.vishal.mvp.utils.CommonUtils;
 public class LoginPresenter implements LoginContract.UserActionsListener {
 
     private final LoginContract.View mLoginView;
+
     LoginPresenter(LoginContract.View mLoginView) {
         this.mLoginView = mLoginView;
     }
@@ -31,15 +32,13 @@ public class LoginPresenter implements LoginContract.UserActionsListener {
             mLoginView.onError(R.string.empty_password);
             return;
         }
-
         mLoginView.showLoading();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mLoginView.hideLoading();
-
-
+                mLoginView.openHomeActivity();
             }
         }, 5000);
     }
